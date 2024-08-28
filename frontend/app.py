@@ -1,10 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, make_response, session
 from flask_mail import Mail, Message
-#from backend.database_querys_Olympics import connect_database
-#from ...PW.backend import database_querys_Olympics as Luca
 import uuid
 import os
-
 from backend import database_querys_Olympics as Luca
 
 app = Flask(__name__)
@@ -121,7 +118,6 @@ def login():
         return 'Username o password errati!'
 
 
-
 @app.route('/logout')
 def logout():
     session.clear()
@@ -147,17 +143,14 @@ def atleti():
 
 @app.route('/atleti/<int:nazioni_ID>')
 def atleti_by_nazione(nazioni_ID):
-    cursor = db.cursor()
-    query = ("""
-        SELECT name, nationality, flag_nations.flag_link
-        FROM athlete
-        JOIN flag_nations ON athlete.nazioni_ID = flag_nations.nazioni_ID
-        WHERE flag_nations.nazioni_ID = %s
-    """)
-    cursor.execute(query, (nazioni_ID,))
-    result = cursor.fetchall()
-    athletes = [row for row in result]
-
+    where = {
+        "flag_nations.nazioni_ID": nazioni_ID
+    }
+    join = {
+        "flag_nations": "nazioni_ID"
+    }
+    athletes = Luca.select_query(db, "athlete", "name, nationality, flag_nations.flag_link",
+                                 join=join, where=where)
     return render_template('atleti_by_nazione.html', athletes=athletes, nazioni_ID=nazioni_ID)
 
 
