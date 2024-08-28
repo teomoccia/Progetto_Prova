@@ -147,7 +147,15 @@ def select_query(db, tabella_name, colonne, join=None, distinct=None, where=None
     if join:
         for chiave, valore in join.items():
             query_select += f" JOIN {chiave} ON {tabella_name}.{valore} = {chiave}.{valore}"
-    
+    if where:
+        query_select += f" WHERE"
+        for chiave, valore in where.items():
+            query_select += f" {chiave} = %s"
+            cursor.execute(query_select, (valore,))
+        result = cursor.fetchall()
+        result_list = [row for row in result]
+        return result_list
+
     cursor.execute(query_select)
     result = cursor.fetchall()
     cursor.close()
