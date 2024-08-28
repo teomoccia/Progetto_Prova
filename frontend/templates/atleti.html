@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atleti - Olympics Dataset 2024</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .flag-container {
+            margin-top: 20px;
+        }
+
+        .flag-link img {
+            cursor: pointer;
+            width: 100%;
+            height: 100px; /* Altezza fissa per tutte le bandiere */
+            object-fit: contain; /* Mantiene le proporzioni dell'immagine */
+        }
+
+        .flag-title {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        .row {
+            margin-bottom: 20px; /* Spazio tra le righe */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Atleti</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/medagliere">Medagliere</a></li>
+                <li><a href="/atleti">Atleti</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/sport">Sport</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="row">
+            {% for flag in flags %}
+            <div class="col-md-2 col-sm-4 col-6 text-center">
+                <a href="{{ url_for('atleti_by_nazione', nazioni_ID=flag[0]) }}" class="flag-link">
+                    <img src="{{ flag[1] }}" alt="Flag of {{ flag[0] }}">
+                </a>
+                <div class="flag-title">{{ flag[2] }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Olympics Dataset. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

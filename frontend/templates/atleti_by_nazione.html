@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atleti - Olympics Dataset 2024</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .card {
+            margin: 10px;
+        }
+        .card img {
+            max-height: 200px;
+            object-fit: cover;
+        }
+        .card-title {
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Atleti</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/medagliere">Medagliere</a></li>
+                <li><a href="/atleti">Atleti</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/sport">Sport</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>Atleti per Nazionalità</h2>
+        <div class="row">
+            {% for athlete in athletes %}
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ athlete[2] }}" class="card-img-top" alt="{{ athlete[0] }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ athlete[0] }}</h5>
+                        <p class="card-text"><strong>Nazionalità:</strong> {{ athlete[1] }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Olympics Dataset. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
