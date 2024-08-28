@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLYMPICS PARIS 2024</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+            flex: 1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .data-table {
+            margin-top: 20px;
+        }
+
+        .data-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .data-table th {
+            background-color: #f2f2f2;
+        }
+
+        .carousel-inner img {
+            width: 100%;
+            max-height: 450px; /* Set a larger max height for the carousel images */
+            object-fit: cover;
+        }
+
+        .carousel {
+            width: 100%;
+            max-height: 450px; /* Set a larger max height for the carousel */
+            overflow: hidden;
+            margin-bottom: 20px; /* Add space below the carousel */
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .video-container iframe,
+        .video-container video {
+            flex: 1;
+            max-width: 48%;
+            height: auto;
+        }
+
+        .newsletter-section {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .newsletter-section input[type="email"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 60%;
+            margin-right: 10px;
+        }
+
+        .newsletter-section button {
+            padding: 10px 15px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .newsletter-section button:hover {
+            background-color: #00408a;
+        }
+
+        .alert {
+            margin-top: 20px;
+        }
+
+        main {
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Olympics Dataset 2024</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('atleti') }}">Atleti</a></li>
+                <li><a href="{{ url_for('medagliere') }}">Medagliere</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="home">
+        <section>
+            <div id="olympicsCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#olympicsCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#olympicsCarousel" data-slide-to="1"></li>
+                    <li data-target="#olympicsCarousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{ url_for('static', filename='images/paris2024-2.jpg') }}" class="d-block w-100" alt="Olympics Paris 2024">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#olympicsCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#olympicsCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+            <h2>Benvenuto alle Olimpiadi di Parigi 2024</h2>
+            <p>Scopri i dati completi delle Olimpiadi, comprese le performance degli atleti, il medagliere e molto altro.</p>
+            <a href="#dataset" class="button">Statistiche</a>
+        </section>
+    </main>
+
+    <main id="dataset">
+        <section>
+            <h2>Olympics Reports</h2>
+            <p>Seleziona un file per visualizzare i dati dettagliati sui Giochi Olimpici.</p>
+            <ul>
+                <!-- Replace with dynamic file list -->
+                <li><a href="#data1">Eventi</a></li>
+                <li><a href="#data2">Sport</a></li>
+            </ul>
+        </section>
+
+        <!-- Video container placed here -->
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/8TK_eAf3fm4?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            <video id="video1" controls autoplay>
+                <source src="{{ url_for('static', filename='videos/france.mp4') }}" type="video/mp4">
+                Il tuo browser non supporta il tag video.
+            </video>
+        </div>
+    </main>
+
+    <main id="data1">
+        <section>
+            <h2>Nazionalità</h2>
+            <div class="data-table">
+                <!-- Replace with dynamic CSV data -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Paese</th>
+                            <th>Evento</th>
+                            <th>Atleti</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Italia</td>
+                            <td>100m</td>
+                            <td>Mario Rossi</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <a href="#dataset" class="button">Back to Dataset</a>
+        </section>
+    </main>
+
+    <div class="newsletter-section">
+        <h3>Iscriviti alla nostra newsletter</h3>
+        <form action="{{ url_for('subscribe') }}" method="POST">
+            <input type="email" name="email" placeholder="Inserisci la tua email" required>
+            <button type="submit">Iscriviti</button>
+        </form>
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                <div class="mt-4">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Olympics Dataset. Tutti i diritti riservati.</p>
+    </footer>
+
+    <!-- Bootstrap JS e dipendenze -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Optional: if you need to do something with the videos, you can add it here
+        });
+    </script>
+</body>
+
+</html>
